@@ -16,4 +16,11 @@
     <string name="sign_in_image">sign in image</string>
     <string name="i_agree">I Agree</string>
     <string name="book_now">Book Now</string>
+    <string name="floating_action_button">floating action button</string>
+
+    <string-array name="gender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

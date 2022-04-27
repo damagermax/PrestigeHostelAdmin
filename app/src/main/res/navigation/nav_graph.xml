@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/roomFragment">
 
     <fragment
         android:id="@+id/signInFragment"
@@ -30,10 +30,19 @@
         android:id="@+id/roomFragment"
         android:name="com.example.prestigehosteladmin.ui.RoomFragment"
         android:label="Room"
-        tools:layout="@layout/fragment_room" />
+        tools:layout="@layout/fragment_room" >
+        <action
+            android:id="@+id/action_roomFragment_to_addRoomFragment"
+            app:destination="@id/addRoomFragment" />
+    </fragment>
     <fragment
         android:id="@+id/checkInFragment"
         android:name="com.example.prestigehosteladmin.ui.CheckInFragment"
         android:label="Check In"
         tools:layout="@layout/fragment_ckeck_in" />
+    <dialog
+        android:id="@+id/addRoomFragment"
+        android:name="com.example.prestigehosteladmin.ui.AddRoomFragment"
+        android:label="fragment_add_room"
+        tools:layout="@layout/fragment_add_room" />
 </navigation>
