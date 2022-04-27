@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PrestigeHostelAdmin</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signIn">signIn</string>
+    <string name="sign_up_cta">Sign up</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="already_have_an_accout">Already have an accout?</string>
+    <string name="signup">signup</string>
+    <string name="sign_up_iamge">sign up iamge</string>
+    <string name="sign_in_image">sign in image</string>
+    <string name="i_agree">I Agree</string>
+    <string name="book_now">Book Now</string>
+</resources>
