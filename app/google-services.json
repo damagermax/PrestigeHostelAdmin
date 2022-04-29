@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "709807797341",
+    "project_id": "prestigehostels-ddeb4",
+    "storage_bucket": "prestigehostels-ddeb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709807797341:android:4180b4613c3f99873149b4",
+        "android_client_info": {
+          "package_name": "com.example.prestigehosteladmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709807797341-kuebpg0quaaqduvr3gpovnp4rero183j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prestigehosteladmin",
+            "certificate_hash": "b16b337bbc98198f78d2d99eb65a18b028d500b5"
+          }
+        },
+        {
+          "client_id": "709807797341-jtou25ccv6u0lgio7mpsfog60ik9veal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVjBvaoI1MoiYp8FvJ-0WvBNFqmWY1Pno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709807797341-jtou25ccv6u0lgio7mpsfog60ik9veal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

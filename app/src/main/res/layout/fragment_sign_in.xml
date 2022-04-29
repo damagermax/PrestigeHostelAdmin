@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
-        android:id="@+id/signUpBtn"
+        android:id="@+id/signInBtn"
         app:cornerRadius="0dp"
         android:text="@string/signIn"/>
 
@@ -77,3 +77,10 @@
 
 
 </LinearLayout>
+
+
+
+
+
+
+

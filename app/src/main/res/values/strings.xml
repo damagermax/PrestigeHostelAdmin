@@ -17,6 +17,8 @@
     <string name="i_agree">I Agree</string>
     <string name="book_now">Book Now</string>
     <string name="floating_action_button">floating action button</string>
+    <string name="room_icon">room icon</string>
+    <string name="check_in_icon">check-in icon</string>
 
     <string-array name="gender">
         <item>Select Gender</item>
