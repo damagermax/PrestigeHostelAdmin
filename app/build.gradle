@@ -71,5 +71,9 @@ dependencies {
     // firebase authentication
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
 
+    // Kotlin components
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
 
 }

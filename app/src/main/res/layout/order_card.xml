@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/orderRoomNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderGuestName"
+            android:layout_marginBottom="5dp"
+            android:text="2nd F 189"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/orderGuestName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Maxwell Takyi"
+            android:paddingEnd="10dp"
+            android:paddingTop="10dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/orderRoomPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="£ 59"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/orderedOn"
+            android:layout_width="wrap_content"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderRoomNumber"
+            android:text="On 05-06-2001"
+            android:textSize="12sp" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderedOn"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:id="@+id/orderDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="View details"
+            android:textColor="@color/grey"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>
