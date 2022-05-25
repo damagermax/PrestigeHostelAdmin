@@ -25,4 +25,12 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <string-array name="roomType">
+        <item>Select room type</item>
+        <item>1 in a room</item>
+        <item>2 in a room</item>
+        <item>3 in a room</item>
+        <item>4 in a room</item>
+    </string-array>
 </resources>

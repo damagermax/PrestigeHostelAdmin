@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prestigehosteladmin.R
 import com.example.prestigehosteladmin.adapter.NavigateToDetailScreen
 import com.example.prestigehosteladmin.adapter.RoomAdapter
+import com.example.prestigehosteladmin.databinding.FragmentRoomBinding
+import com.example.prestigehosteladmin.databinding.RoomCardBinding
 import com.example.prestigehosteladmin.model.RoomModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -19,35 +21,39 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  *
  * create an instance of this fragment.
  */
-class RoomFragment : Fragment(), NavigateToDetailScreen {
+class RoomFragment : Fragment(R.layout.fragment_room), NavigateToDetailScreen {
+
+    private var _binding:FragmentRoomBinding?=null
+    private val binding get() = _binding!!
 
     private lateinit var roomAdapter: RoomAdapter
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var searchView: SearchView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
+
         // Inflate the layout for this fragment
-        val view=inflater.inflate(R.layout.fragment_room, container, false)
+        _binding= FragmentRoomBinding.inflate(inflater,container,false)
 
-        // hook views
-        recyclerView = view.findViewById(R.id.roomRecyclerView)
-        searchView=view.findViewById(R.id.searchView)
-        val addRoom=view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        return binding.root
+    }
 
-        searchView.isIconifiedByDefault=false
-        // call functions here
-        setUpRecyclerView()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
 
-        addRoom.setOnClickListener {
-
-            val action =RoomFragmentDirections.actionRoomFragmentToAddRoomFragment()
+        binding.searchView.isIconifiedByDefault=true // make searchView active
+        
+        binding.floatingActionButton.setOnClickListener {
+            val action=RoomFragmentDirections.actionRoomFragmentToAddRoomFragment()
             findNavController().navigate(action)
         }
-        return view
+
+
+        // call functions here
+        setUpRecyclerView()
     }
 
     private fun setUpRecyclerView() {
@@ -68,9 +74,9 @@ class RoomFragment : Fragment(), NavigateToDetailScreen {
             RoomModel("5th F 258","£ 7785",4,0,kitchen = true,false),
         )
         roomAdapter= RoomAdapter(this)
-        recyclerView.setHasFixedSize(true)
+        binding.roomRecyclerView.setHasFixedSize(true)
         roomAdapter.setData(dummy)
-        recyclerView.adapter=roomAdapter
+        binding.roomRecyclerView.adapter=roomAdapter
     }
 
     override fun selectedRoom(roomModel: RoomModel) {
