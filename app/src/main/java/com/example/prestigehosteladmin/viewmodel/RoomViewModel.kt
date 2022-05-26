@@ -21,5 +21,9 @@ class RoomViewModel(
         return roomRepository.deleteRoom(iD)
     }
 
+    fun getRooms():LiveData<Response>{
+        return roomRepository.getRooms()
+    }
+
 
 }

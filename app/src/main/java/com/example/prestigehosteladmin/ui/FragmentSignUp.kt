@@ -7,21 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.prestigehosteladmin.databinding.FragmentSignInBinding
+import com.example.prestigehosteladmin.R
+import com.example.prestigehosteladmin.databinding.FragmentSignUpBinding
 import com.example.prestigehosteladmin.utils.toastMessage
 import com.example.prestigehosteladmin.viewmodel.AuthViewModel
 
+/*
+* created by maxwell takyi on 21 april 2022
+* */
+class FragmentSignUp : Fragment(R.layout.fragment_sign_up) {
 
-/**
- *
- * create an instance of this fragment.
- */
-class SignInFragment : Fragment() {
-
-
-    private var _binding: FragmentSignInBinding? = null
+    private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
-
 
     private lateinit var authViewModel: AuthViewModel
 
@@ -30,7 +27,7 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentSignInBinding.inflate(inflater, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -39,57 +36,63 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        authViewModel=ViewModelProvider(this).get(AuthViewModel::class.java)
 
-        authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
-        binding.signInBtn.setOnClickListener {
+        binding.signUpBtn.setOnClickListener {
+
             validateForm()
+
         }
 
-        binding.signUpTx.setOnClickListener {
-            val action = SignInFragmentDirections.actionSignInFragmentToFragmentSignUp()
+        binding.signInTx.setOnClickListener {
+
+            val action = FragmentSignUpDirections.actionFragmentSignUpToSignInFragment()
             findNavController().navigate(action)
         }
+
 
     }
 
     private fun validateForm() {
-
-        val email = binding.emailInputSi.text.toString()
-        val password = binding.passwordInputSi.text.toString()
+        val email = binding.emailInput.text.toString()
+        val password = binding.signUpPasswordInput.text.toString()
+        val confirmPassword = binding.signUpRepeatPasswordInput.text.toString()
 
         when {
             email.isEmpty() -> {
-
                 requireContext().toastMessage("Enter your email")
                 return
-
             }
             password.isEmpty() -> {
-
                 requireContext().toastMessage("Enter your password")
                 return
-
+            }
+            confirmPassword.isEmpty() -> {
+                requireContext().toastMessage("Confirm your password")
+                return
+            }
+            password != confirmPassword -> {
+                requireContext().toastMessage("Password do not match")
+                return
             }
             else -> {
-
-                signInUser(email, password)
-
+                signUp(email, password)
             }
         }
-
     }
 
-    private fun signInUser(email: String, password: String) {
+    private fun signUp(email: String, password: String) {
 
-        authViewModel.signInUser(email, password).observe(viewLifecycleOwner) { authUiState ->
-            authUiState.isSuccess.let { isSuccess ->
-                if (isSuccess) {
+        authViewModel.signUpUser(email, password).observe(viewLifecycleOwner){authUiState->
 
-                    val action = SignInFragmentDirections.actionSignInFragmentToDashboardFragment()
+            authUiState.isSuccess.let { isSuccess->
+                if (isSuccess){
+
+                    val action=FragmentSignUpDirections.actionFragmentSignUpToDashboardFragment()
                     findNavController().navigate(action)
 
-                    authUiState.message.let { message ->
+                    authUiState.message.let { message->
                         if (message != null) {
                             requireContext().toastMessage(message)
                         }
@@ -101,15 +104,17 @@ class SignInFragment : Fragment() {
             }
 
             authUiState.exception?.let { exception ->
-                exception.localizedMessage.let { message ->
-                    if (message != null) {
-                        requireContext().toastMessage(message)
-                    }
-
+            exception.localizedMessage.let { message->
+                if (message != null) {
+                    requireContext().toastMessage(message)
                 }
 
             }
+
+            }
+
         }
+
 
     }
 
@@ -118,6 +123,4 @@ class SignInFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

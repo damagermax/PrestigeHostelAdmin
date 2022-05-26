@@ -2,6 +2,7 @@ package com.example.prestigehosteladmin.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.prestigehosteladmin.model.RoomModel
 import com.example.prestigehosteladmin.utils.Constants.ROOMS_REF
 import com.example.prestigehosteladmin.utils.Constants.ROOM_SUCCESS_MSG
 import com.example.prestigehosteladmin.utils.Response
@@ -34,7 +35,7 @@ class RoomRepository(
             }
             addRoomMutableLiveData.value = response
 
-            Log.d("bigman",addRoomMutableLiveData.value.toString())
+
         }
         return addRoomMutableLiveData
     }
@@ -60,9 +61,9 @@ class RoomRepository(
         return updateRoomMutableLiveData
     }
 
-    fun deleteRoom(iD:String):MutableLiveData<Response>{
-        val deleteRoomMutableLiveData=MutableLiveData<Response>()
-        roomsRef.child(iD).removeValue().addOnCompleteListener { task->
+    fun deleteRoom(iD: String): MutableLiveData<Response> {
+        val deleteRoomMutableLiveData = MutableLiveData<Response>()
+        roomsRef.child(iD).removeValue().addOnCompleteListener { task ->
             val response = Response()
             response.loading = true
 
@@ -79,5 +80,26 @@ class RoomRepository(
         }
 
         return deleteRoomMutableLiveData
+    }
+
+    fun getRooms(): MutableLiveData<Response> {
+        val roomsMutableLiveData = MutableLiveData<Response>()
+        roomsRef.get().addOnCompleteListener { task ->
+
+            val response = Response()
+
+            if (task.isSuccessful) {
+                val result = task.result
+                result.let { dataSnapshot ->
+                    response.rooms = dataSnapshot.children.map { snapshot ->
+                        snapshot.getValue(RoomModel::class.java)!!
+                    }
+                }
+            } else {
+                response.exception = task.exception
+            }
+            roomsMutableLiveData.value = response
+        }
+        return roomsMutableLiveData
     }
 }
