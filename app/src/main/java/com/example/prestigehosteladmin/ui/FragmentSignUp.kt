@@ -11,6 +11,7 @@ import com.example.prestigehosteladmin.R
 import com.example.prestigehosteladmin.databinding.FragmentSignUpBinding
 import com.example.prestigehosteladmin.utils.toastMessage
 import com.example.prestigehosteladmin.viewmodel.AuthViewModel
+import com.shencoder.loadingdialog.LoadingDialog
 
 /*
 * created by maxwell takyi on 21 april 2022
@@ -21,6 +22,7 @@ class FragmentSignUp : Fragment(R.layout.fragment_sign_up) {
     private val binding get() = _binding!!
 
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var loadingDialog: LoadingDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,17 +38,15 @@ class FragmentSignUp : Fragment(R.layout.fragment_sign_up) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        authViewModel=ViewModelProvider(this).get(AuthViewModel::class.java)
+        buildLoadingDialog()
 
+        authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
         binding.signUpBtn.setOnClickListener {
-
             validateForm()
-
         }
 
         binding.signInTx.setOnClickListener {
-
             val action = FragmentSignUpDirections.actionFragmentSignUpToSignInFragment()
             findNavController().navigate(action)
         }
@@ -78,21 +78,32 @@ class FragmentSignUp : Fragment(R.layout.fragment_sign_up) {
             }
             else -> {
                 signUp(email, password)
+                loadingDialog.show()
             }
         }
     }
 
+    private fun buildLoadingDialog() {
+        loadingDialog = LoadingDialog.createDefault(requireContext())
+        loadingDialog.setHintText("Signing Up...")
+        loadingDialog.showHintText(true)
+        loadingDialog.setCancelable(false)
+
+    }
+
     private fun signUp(email: String, password: String) {
 
-        authViewModel.signUpUser(email, password).observe(viewLifecycleOwner){authUiState->
+        authViewModel.signUpUser(email, password).observe(viewLifecycleOwner) { authUiState ->
 
-            authUiState.isSuccess.let { isSuccess->
-                if (isSuccess){
+            authUiState.isSuccess.let { isSuccess ->
+                if (isSuccess) {
 
-                    val action=FragmentSignUpDirections.actionFragmentSignUpToDashboardFragment()
+                    loadingDialog.dismiss()
+
+                    val action = FragmentSignUpDirections.actionFragmentSignUpToDashboardFragment()
                     findNavController().navigate(action)
 
-                    authUiState.message.let { message->
+                    authUiState.message.let { message ->
                         if (message != null) {
                             requireContext().toastMessage(message)
                         }
@@ -104,12 +115,14 @@ class FragmentSignUp : Fragment(R.layout.fragment_sign_up) {
             }
 
             authUiState.exception?.let { exception ->
-            exception.localizedMessage.let { message->
-                if (message != null) {
-                    requireContext().toastMessage(message)
-                }
+                exception.localizedMessage.let { message ->
+                    if (message != null) {
 
-            }
+                        loadingDialog.dismiss()
+                        requireContext().toastMessage(message)
+                    }
+
+                }
 
             }
 

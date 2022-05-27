@@ -1,6 +1,7 @@
 package com.example.prestigehosteladmin.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.prestigehosteladmin.databinding.FragmentSignInBinding
 import com.example.prestigehosteladmin.utils.toastMessage
 import com.example.prestigehosteladmin.viewmodel.AuthViewModel
+import com.shencoder.loadingdialog.LoadingDialog
 
 
 /**
@@ -24,6 +26,9 @@ class SignInFragment : Fragment() {
 
 
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var loadingDialog: LoadingDialog
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +44,10 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        buildLoadingDialog()
 
         authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
+
 
         binding.signInBtn.setOnClickListener {
             validateForm()
@@ -50,6 +57,31 @@ class SignInFragment : Fragment() {
             val action = SignInFragmentDirections.actionSignInFragmentToFragmentSignUp()
             findNavController().navigate(action)
         }
+        binding.forgotPassword.setOnClickListener {
+            val action =SignInFragmentDirections.actionSignInFragmentToResetPasswordFragment()
+            findNavController().navigate(action)
+        }
+
+    }
+
+    private fun checkIfUserIsSignedIn() {
+        val currentUser = authViewModel.getCurrentUser().let { user ->
+            if (user != null) {
+
+                val action = SignInFragmentDirections.actionSignInFragmentToDashboardFragment()
+                findNavController().navigate(action)
+
+
+            }
+        }
+
+    }
+
+    private fun buildLoadingDialog() {
+        loadingDialog = LoadingDialog.createDefault(requireContext())
+        loadingDialog.setHintText("Signing In...")
+        loadingDialog.showHintText(true)
+        loadingDialog.setCancelable(false)
 
     }
 
@@ -74,6 +106,7 @@ class SignInFragment : Fragment() {
             else -> {
 
                 signInUser(email, password)
+                loadingDialog.show()
 
             }
         }
@@ -82,10 +115,13 @@ class SignInFragment : Fragment() {
 
     private fun signInUser(email: String, password: String) {
 
+
         authViewModel.signInUser(email, password).observe(viewLifecycleOwner) { authUiState ->
+
             authUiState.isSuccess.let { isSuccess ->
                 if (isSuccess) {
 
+                    loadingDialog.dismiss()
                     val action = SignInFragmentDirections.actionSignInFragmentToDashboardFragment()
                     findNavController().navigate(action)
 
@@ -103,6 +139,7 @@ class SignInFragment : Fragment() {
             authUiState.exception?.let { exception ->
                 exception.localizedMessage.let { message ->
                     if (message != null) {
+                        loadingDialog.dismiss()
                         requireContext().toastMessage(message)
                     }
 
@@ -113,10 +150,14 @@ class SignInFragment : Fragment() {
 
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        checkIfUserIsSignedIn()
     }
 
 

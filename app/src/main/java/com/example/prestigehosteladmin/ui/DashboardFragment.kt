@@ -1,17 +1,14 @@
 package com.example.prestigehosteladmin.ui
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
-import com.example.prestigehosteladmin.R
+import androidx.fragment.app.Fragment
 import com.example.prestigehosteladmin.adapter.BannerAdapter
 import com.example.prestigehosteladmin.databinding.FragmentDashboardBinding
 import com.example.prestigehosteladmin.model.BannerModel
-import kotlin.math.E
 
 
 /**
@@ -47,8 +44,10 @@ class DashboardFragment : Fragment() {
 
     private fun addBannerFromGallery() {
 
-        Toast.makeText(requireContext(), "das", Toast.LENGTH_LONG).show()
-        //@todo pick image from gallery
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, 3)
+
     }
 
 

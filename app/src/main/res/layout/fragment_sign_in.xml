@@ -5,13 +5,15 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="15dp"
+    android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.SignInFragment">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+
+        android:layout_gravity="center_horizontal"
         android:contentDescription="@string/sign_in_image"
         android:src="@drawable/ic_sign_in"/>
 
@@ -40,6 +42,15 @@
             android:layout_height="match_parent"
             android:id="@+id/passwordInputSi"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        android:id="@+id/forgotPassword"
+        android:layout_marginTop="10dp"
+        android:text="Forgot Password?"/>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
@@ -53,13 +64,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:gravity="center_horizontal"
-
-        android:layout_height="match_parent">
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/noAcct"
-            android:layout_alignParentBottom="true"
+
             android:text="@string/don_t_have_an_account"/>
         <TextView
             android:layout_width="wrap_content"
@@ -67,8 +78,8 @@
             android:text="@string/sign_up_cta"
             android:id="@+id/signUpTx"
             android:layout_toEndOf="@+id/noAcct"
-            android:layout_alignParentBottom="true"
-            android:textColor="@color/grey"
+
+            android:textColor="@color/blue"
             android:textStyle="bold"
             android:layout_marginStart="5dp"/>
     </RelativeLayout>

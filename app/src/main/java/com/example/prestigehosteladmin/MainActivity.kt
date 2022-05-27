@@ -22,7 +22,14 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val toolbar: Toolbar =findViewById(R.id.toolBar)
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.signInFragment,
+            R.id.dashboardFragment,
+            R.id.fragmentSignUp
+
+        )
+        )
+
         toolbar .setupWithNavController(navController, appBarConfiguration)
     }
 }

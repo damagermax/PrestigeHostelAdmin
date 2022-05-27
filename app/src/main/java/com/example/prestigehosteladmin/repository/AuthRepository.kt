@@ -31,15 +31,15 @@ class AuthRepository(
     fun signInUser(email: String, password: String): MutableLiveData<AuthState> {
         val userMutableLiveData = MutableLiveData<AuthState>()
         val authState = AuthState()
-        authState.isLoading = true
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    authState.isLoading = false
+
                     authState.isSuccess = true
                     authState.message = "SignIn successful"
                 } else {
-                    authState.isLoading = false
+
                     authState.exception = task.exception
                 }
                 userMutableLiveData.value = authState
@@ -66,6 +66,24 @@ class AuthRepository(
             authState.message=exception.localizedMessage
         }
         return userMutableLiveData
+    }
+
+    fun sendPasswordResetEmail(email: String):MutableLiveData<AuthState>{
+        val userMutableLiveData = MutableLiveData<AuthState>()
+        val authState = AuthState()
+        auth.sendPasswordResetEmail(email).addOnCompleteListener { task->
+            if (task.isSuccessful) {
+
+                authState.isSuccess = true
+            } else {
+
+                authState.exception = task.exception
+            }
+            userMutableLiveData.value = authState
+
+        }
+
+     return userMutableLiveData
     }
 
     fun getCurrentUser(): FirebaseUser? {

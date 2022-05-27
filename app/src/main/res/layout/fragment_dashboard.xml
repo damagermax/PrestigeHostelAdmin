@@ -36,6 +36,7 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:src="@drawable/room"
                     android:contentDescription="@string/room_icon"
                     android:id="@+id/roomIcon"
                     android:background="@drawable/dashboard_card_item_background" />
@@ -54,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-
                 android:orientation="vertical"
                 tools:ignore="UseCompoundDrawables">
 
@@ -62,6 +62,7 @@
                     android:layout_width="60dp"
                     android:contentDescription="@string/check_in_icon"
                     android:layout_height="60dp"
+                    android:src="@drawable/check_in"
                     android:id="@+id/checkInIcon"
                     android:background="@drawable/dashboard_card_item_background" />
 
@@ -86,6 +87,7 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:src="@drawable/notification"
                     android:background="@drawable/dashboard_card_item_background" />
 
                 <TextView
@@ -129,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="34"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textStyle="bold" />
         </RelativeLayout>
         <!--    total room available-->
@@ -157,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="34"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -187,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="34"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textStyle="bold" />
         </RelativeLayout>
         <!--    room end -->
@@ -221,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="34"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textStyle="bold" />
         </RelativeLayout>
         <!--    total room available-->
@@ -249,7 +251,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="34"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textStyle="bold" />
         </RelativeLayout>
 

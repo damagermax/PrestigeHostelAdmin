@@ -12,14 +12,16 @@
         <entry key="app/src/main/res/drawable/dashboard_card_ite_background.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/dashboard_card_item_background.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/filter_list_24.xml" value="0.103" />
+        <entry key="app/src/main/res/drawable/ic_sign_in.xml" value="0.126" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/banner_card.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/fragment_add_room.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/fragment_ckeck_in.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.13703703703703704" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_room.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.2947916666666667" />
-        <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/order_card.xml" value="0.25" />
         <entry key="app/src/main/res/layout/room_card.xml" value="0.2947916666666667" />
       </map>
